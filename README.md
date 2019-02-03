@@ -1,5 +1,5 @@
 # react-bulletproof-button
-React component that creates styled &lt;a> "bulletproof" email buttons that are compatible with a large list of email clients. HTML output is based on [Campaign Monitor's "Bulletproof email buttons" concept](https://buttons.cm/).
+React component that allows you design and create goregous email buttons that are compatible with modern email clients & Outlook 2007+. HTML output is based on [Campaign Monitor's "Bulletproof email buttons" concept](https://buttons.cm/).
 
 # Why Do I Need Bulletproof Buttons?
 
