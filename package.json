@@ -1,0 +1,30 @@
+{
+  "name": "react-bulletproof-button",
+  "version": "1.0.0",
+  "description": "React component that creates styled <a> \"bulletproof\" email buttons that are compatible with a large list of email clients.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacksontrieu/react-bulletproof-button.git"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "email",
+    "bulletproof-button",
+    "email-template",
+    "email-boilerplate",
+    "email-button",
+    "email-css",
+    "bulletproof"
+  ],
+  "author": "Jackson Trieu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jacksontrieu/react-bulletproof-button/issues"
+  },
+  "homepage": "https://github.com/jacksontrieu/react-bulletproof-button#readme"
+}
