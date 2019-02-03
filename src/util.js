@@ -16,6 +16,7 @@ export const hashToStyles = (styleHash) => {
 
 export const toPx = (value) => {
   if (!value) { return '0'; }
+  if (typeof(value) === 'string' && value.endsWith('px')) { return value; }
 
   return `${value}px`;
 };
