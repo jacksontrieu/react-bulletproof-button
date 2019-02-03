@@ -1,36 +1,50 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-function styleInject(css, ref) {
-  if ( ref === void 0 ) ref = {};
-  var insertAt = ref.insertAt;
+var hashToStyles = function hashToStyles(styleHash) {
+  var result = '';
 
-  if (!css || typeof document === 'undefined') { return; }
+  var keys = Object.keys(styleHash);
 
-  var head = document.head || document.getElementsByTagName('head')[0];
-  var style = document.createElement('style');
-  style.type = 'text/css';
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
 
-  if (insertAt === 'top') {
-    if (head.firstChild) {
-      head.insertBefore(style, head.firstChild);
-    } else {
-      head.appendChild(style);
+  try {
+    for (var _iterator = keys[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var key = _step.value;
+
+      if (result) {
+        result += '; ';
+      }
+
+      result += key + ': ' + styleHash[key];
     }
-  } else {
-    head.appendChild(style);
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
   }
 
-  if (style.styleSheet) {
-    style.styleSheet.cssText = css;
-  } else {
-    style.appendChild(document.createTextNode(css));
-  }
-}
+  return result;
+};
 
-var css = "/* add css styles here (optional) */\n\n.styles_test__32Qsm {\n  display: inline-block;\n  margin: 2em auto;\n  border: 2px solid #000;\n  font-size: 2em;\n}\n";
-var styles = { "test": "styles_test__32Qsm" };
-styleInject(css);
+var toPx = function toPx(value) {
+  if (!value) {
+    return '0';
+  }
+
+  return value + 'px';
+};
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -80,34 +94,118 @@ var possibleConstructorReturn = function (self, call) {
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
 
-var ExampleComponent = function (_Component) {
-  inherits(ExampleComponent, _Component);
+var BulletproofButton = function (_Component) {
+  inherits(BulletproofButton, _Component);
 
-  function ExampleComponent() {
-    classCallCheck(this, ExampleComponent);
-    return possibleConstructorReturn(this, (ExampleComponent.__proto__ || Object.getPrototypeOf(ExampleComponent)).apply(this, arguments));
+  function BulletproofButton() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    classCallCheck(this, BulletproofButton);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = BulletproofButton.__proto__ || Object.getPrototypeOf(BulletproofButton)).call.apply(_ref, [this].concat(args))), _this), _this.calculateVmlArcSize = function () {
+      return Math.round(_this.props.borderRadius / _this.props.width * 100).toString() + '%';
+    }, _temp), possibleConstructorReturn(_this, _ret);
   }
 
-  createClass(ExampleComponent, [{
+  createClass(BulletproofButton, [{
     key: 'render',
     value: function render() {
-      var text = this.props.text;
+      var vmlRectStyles = hashToStyles({
+        'height': toPx(this.props.height),
+        'v-text-anchor': 'middle',
+        'width': toPx(this.props.width)
+      });
 
+      var vmlCenterStyles = hashToStyles({
+        'color': '#ffffff',
+        'font-family': this.props.fontFamily,
+        'font-size': toPx(this.props.fontSize),
+        'font-weight': this.props.fontWeight
+      });
+
+      var vmlArcSize = this.calculateVmlArcSize();
+
+      var htmlLinkStyles = hashToStyles({
+        'background-color': this.props.backgroundColor,
+        'border-color': this.props.borderColor,
+        'border-style': this.props.borderStyle,
+        'border-width': toPx(this.props.borderWidth),
+        'border-radius': toPx(this.props.borderRadius),
+        'color': this.props.fontColor,
+        'display': 'inline-block',
+        'font-family': this.props.fontFamily,
+        'font-size': toPx(this.props.fontSize),
+        'font-weight': this.props.fontWeight,
+        'height': toPx(this.props.height),
+        'line-height': toPx(this.props.height),
+        'mso-hide': 'all',
+        'text-align': 'center',
+        'text-decoration': 'none',
+        'width': toPx(this.props.width),
+        '-webkit-text-size-adjust': 'none'
+      });
+
+      var vmlButton = '\n      <!--[if mso]>\n        <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml"\n                     xmlns:w="urn:schemas-microsoft-com:office:word"\n                     href="' + this.props.href + '"\n                     style="' + vmlRectStyles + '"\n                     arcsize="' + vmlArcSize + '"\n                     strokecolor="' + this.props.borderColor + '"\n                     fillcolor="' + this.props.backgroundColor + '">\n          <w:anchorlock />\n          <center style="' + vmlCenterStyles + '">\n            ' + this.props.text + '\n          !</center>\n        </v:roundrect>\n      <![endif]-->\n    ';
+
+      var htmlButton = '\n      <a\n        href="' + this.props.href + '"\n        style="' + htmlLinkStyles + '">\n        ' + this.props.text + '\n      </a>\n    ';
 
       return React.createElement(
         'div',
-        { className: styles.test },
-        'Example Component: ',
-        text
+        null,
+        React.createElement('div', { dangerouslySetInnerHTML: { __html: vmlButton } }),
+        React.createElement('div', { dangerouslySetInnerHTML: { __html: htmlButton } })
       );
     }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if (this.linkElement) {
+        this.linkElement.style['mso-hide'] = 'all';
+        this.linkElement.style['font-size'] = '15px';
+        this.linkElement.style.fontSize = '16px';
+        this.linkElement.style.msoHide = 'all';
+      }
+    }
   }]);
-  return ExampleComponent;
+  return BulletproofButton;
 }(Component);
 
-ExampleComponent.propTypes = {
-  text: PropTypes.string
+
+BulletproofButton.defaultProps = {
+  backgroundColor: '#556270',
+  borderColor: '#1e3650',
+  borderRadius: 4,
+  borderStyle: 'solid',
+  borderWidth: 1,
+  fontFamily: 'sans-serif',
+  fontSize: 13,
+  fontWeight: 'bold',
+  fontColor: '#fff',
+  height: 40,
+  width: 200
 };
 
-export default ExampleComponent;
+BulletproofButton.propTypes = {
+  backgroundColor: PropTypes.string,
+  borderColor: PropTypes.string,
+  borderRadius: PropTypes.number,
+  borderStyle: PropTypes.string,
+  borderWidth: PropTypes.number,
+  fontColor: PropTypes.string,
+  fontFamily: PropTypes.string,
+  fontSize: PropTypes.number,
+  fontWeight: PropTypes.string,
+  height: PropTypes.number,
+  href: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  width: PropTypes.number
+};
+
+export default BulletproofButton;
 //# sourceMappingURL=index.es.js.map

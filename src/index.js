@@ -1,22 +1,117 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { hashToStyles, toPx } from './util';
 
-import styles from './styles.css'
-
-export default class ExampleComponent extends Component {
-  static propTypes = {
-    text: PropTypes.string
-  }
-
+export default class BulletproofButton extends Component {
   render() {
-    const {
-      text
-    } = this.props
+    const vmlRectStyles = hashToStyles({
+      'height': toPx(this.props.height),
+      'v-text-anchor': 'middle',
+      'width': toPx(this.props.width)
+    });
+
+    const vmlCenterStyles = hashToStyles({
+      'color': '#ffffff',
+      'font-family': this.props.fontFamily,
+      'font-size': toPx(this.props.fontSize),
+      'font-weight': this.props.fontWeight
+    });
+
+    const vmlArcSize = this.calculateVmlArcSize();
+
+    const htmlLinkStyles = hashToStyles({
+      'background-color': this.props.backgroundColor,
+      'border-color': this.props.borderColor,
+      'border-style': this.props.borderStyle,
+      'border-width': toPx(this.props.borderWidth),
+      'border-radius': toPx(this.props.borderRadius),
+      'color': this.props.fontColor,
+      'display': 'inline-block',
+      'font-family': this.props.fontFamily,
+      'font-size': toPx(this.props.fontSize),
+      'font-weight': this.props.fontWeight,
+      'height': toPx(this.props.height),
+      'line-height': toPx(this.props.height),
+      'mso-hide': 'all',
+      'text-align': 'center',
+      'text-decoration': 'none',
+      'width': toPx(this.props.width),
+      '-webkit-text-size-adjust': 'none'
+    });
+
+    const vmlButton = `
+      <!--[if mso]>
+        <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml"
+                     xmlns:w="urn:schemas-microsoft-com:office:word"
+                     href="${this.props.href}"
+                     style="${vmlRectStyles}"
+                     arcsize="${vmlArcSize}"
+                     strokecolor="${this.props.borderColor}"
+                     fillcolor="${this.props.backgroundColor}">
+          <w:anchorlock />
+          <center style="${vmlCenterStyles}">
+            ${this.props.text}
+          !</center>
+        </v:roundrect>
+      <![endif]-->
+    `;
+
+    const htmlButton = `
+      <a
+        href="${this.props.href}"
+        style="${htmlLinkStyles}">
+        ${this.props.text}
+      </a>
+    `;
 
     return (
-      <div className={styles.test}>
-        Example Component: {text}
+      <div>
+        <div dangerouslySetInnerHTML={{__html: vmlButton}} />
+        <div dangerouslySetInnerHTML={{__html: htmlButton}} />
       </div>
     )
   }
+
+  componentDidMount() {
+    if (this.linkElement) {
+      this.linkElement.style['mso-hide'] = 'all';
+      this.linkElement.style['font-size'] = '15px';
+      this.linkElement.style.fontSize = '16px';
+      this.linkElement.style.msoHide = 'all';
+    }
+  }
+
+  calculateVmlArcSize = () => {
+    return Math.round((this.props.borderRadius / this.props.width) * 100).toString() + '%';
+  }
 }
+
+BulletproofButton.defaultProps = {
+  backgroundColor: '#556270',
+  borderColor: '#1e3650',
+  borderRadius: 4,
+  borderStyle: 'solid',
+  borderWidth: 1,
+  fontFamily: 'sans-serif',
+  fontSize: 13,
+  fontWeight: 'bold',
+  fontColor: '#fff',
+  height: 40,
+  width: 200
+};
+
+BulletproofButton.propTypes = {
+  backgroundColor: PropTypes.string,
+  borderColor: PropTypes.string,
+  borderRadius: PropTypes.number,
+  borderStyle: PropTypes.string,
+  borderWidth: PropTypes.number,
+  fontColor: PropTypes.string,
+  fontFamily: PropTypes.string,
+  fontSize: PropTypes.number,
+  fontWeight: PropTypes.string,
+  height: PropTypes.number,
+  href: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  width: PropTypes.number
+};
