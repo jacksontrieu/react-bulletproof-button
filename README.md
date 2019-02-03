@@ -5,7 +5,7 @@ React component that allows you design and create goregous email buttons that ar
 
 CSS support for HTML emails differs wildly between email clients, making it difficult to create HTML that will render consistently across a wide range of email clients.
 
-In particular, older Outlook clients (2007/2010/2013) use the Microsoft Word rendering enginer which limits HTML emails to a subset of the modern CSS spec.
+In particular, older Outlook clients (2007/2010/2013) use the Microsoft Word rendering engine which limits HTML emails to a subset of the modern CSS spec.
 
 Bulletproof buttons allow you to design and render gorgeous buttons using progressively enhanced VML and CSS.
 
