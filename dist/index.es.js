@@ -7,6 +7,8 @@ function _classCallCheck(instance, Constructor) {
   }
 }
 
+var classCallCheck = _classCallCheck;
+
 function _defineProperties(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
@@ -23,6 +25,93 @@ function _createClass(Constructor, protoProps, staticProps) {
   return Constructor;
 }
 
+var createClass = _createClass;
+
+function createCommonjsModule(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+var _typeof_1 = createCommonjsModule(function (module) {
+function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
+
+function _typeof(obj) {
+  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return _typeof2(obj);
+    };
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+    };
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
+});
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+var assertThisInitialized = _assertThisInitialized;
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof_1(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return assertThisInitialized(self);
+}
+
+var possibleConstructorReturn = _possibleConstructorReturn;
+
+var getPrototypeOf = createCommonjsModule(function (module) {
+function _getPrototypeOf(o) {
+  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+module.exports = _getPrototypeOf;
+});
+
+var setPrototypeOf = createCommonjsModule(function (module) {
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+module.exports = _setPrototypeOf;
+});
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) setPrototypeOf(subClass, superClass);
+}
+
+var inherits = _inherits;
+
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -38,52 +127,7 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) _setPrototypeOf(subClass, superClass);
-}
-
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (typeof call === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return _assertThisInitialized(self);
-}
+var defineProperty = _defineProperty;
 
 var hashToStyles = function hashToStyles(styleHash) {
   var result = '';
@@ -106,50 +150,90 @@ var toPx = function toPx(value) {
     return '0';
   }
 
+  if (typeof value === 'string' && value.endsWith('px')) {
+    return value;
+  }
+
   return "".concat(value, "px");
 };
 
 var BulletproofButton =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(BulletproofButton, _Component);
+  inherits(BulletproofButton, _Component);
 
   function BulletproofButton() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, BulletproofButton);
+    classCallCheck(this, BulletproofButton);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(BulletproofButton)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(BulletproofButton)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "calculateVmlArcSize", function () {
+    defineProperty(assertThisInitialized(assertThisInitialized(_this)), "calculateVmlArcSize", function () {
       return Math.round(_this.props.borderRadius / _this.props.width * 100).toString() + '%';
     });
 
     return _this;
   }
 
-  _createClass(BulletproofButton, [{
+  createClass(BulletproofButton, [{
     key: "render",
     value: function render() {
-      var vmlRectStyles = hashToStyles({
+      var vmlButton = this.renderVmlButton();
+      var htmlButton = this.renderHtmlButton();
+      return React.createElement("div", null, React.createElement("div", {
+        dangerouslySetInnerHTML: {
+          __html: vmlButton
+        }
+      }), React.createElement("div", {
+        dangerouslySetInnerHTML: {
+          __html: htmlButton
+        }
+      }));
+    }
+  }, {
+    key: "renderVmlButton",
+    value: function renderVmlButton() {
+      var vmlRectStyles = this.calculateVmlRectStyles();
+      var vmlCenterStyles = this.calculateVmlCenterStyles();
+      var vmlArcSize = this.calculateVmlArcSize();
+      return "\n      <!--[if mso]>\n        <v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\"\n                     xmlns:w=\"urn:schemas-microsoft-com:office:word\"\n                     href=\"".concat(this.props.href, "\"\n                     style=\"").concat(vmlRectStyles, "\"\n                     arcsize=\"").concat(vmlArcSize, "\"\n                     strokecolor=\"").concat(this.props.borderColor, "\"\n                     fillcolor=\"").concat(this.props.backgroundColor, "\">\n          <w:anchorlock />\n          <center style=\"").concat(vmlCenterStyles, "\">\n            ").concat(this.props.text, "\n          </center>\n        </v:roundrect>\n      <![endif]-->\n    ");
+    }
+  }, {
+    key: "calculateVmlRectStyles",
+    value: function calculateVmlRectStyles() {
+      return hashToStyles({
         'height': toPx(this.props.height),
         'v-text-anchor': 'middle',
         'width': toPx(this.props.width)
       });
-      var vmlCenterStyles = hashToStyles({
-        'color': '#ffffff',
+    }
+  }, {
+    key: "calculateVmlCenterStyles",
+    value: function calculateVmlCenterStyles() {
+      return hashToStyles({
+        'color': this.props.fontColor,
         'font-family': this.props.fontFamily,
         'font-size': toPx(this.props.fontSize),
         'font-weight': this.props.fontWeight
       });
-      var vmlArcSize = this.calculateVmlArcSize();
-      var htmlLinkStyles = hashToStyles({
+    }
+  }, {
+    key: "renderHtmlButton",
+    value: function renderHtmlButton() {
+      var htmlLinkStyles = this.calculateHtmlLinkStyles();
+      return "\n      <a\n        href=\"".concat(this.props.href, "\"\n        style=\"").concat(htmlLinkStyles, "\">\n        ").concat(this.props.text, "\n      </a>\n    ");
+    }
+  }, {
+    key: "calculateHtmlLinkStyles",
+    value: function calculateHtmlLinkStyles() {
+      return hashToStyles({
         'background-color': this.props.backgroundColor,
         'border-color': this.props.borderColor,
         'border-style': this.props.borderStyle,
@@ -168,27 +252,6 @@ function (_Component) {
         'width': toPx(this.props.width),
         '-webkit-text-size-adjust': 'none'
       });
-      var vmlButton = "\n      <!--[if mso]>\n        <v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\"\n                     xmlns:w=\"urn:schemas-microsoft-com:office:word\"\n                     href=\"".concat(this.props.href, "\"\n                     style=\"").concat(vmlRectStyles, "\"\n                     arcsize=\"").concat(vmlArcSize, "\"\n                     strokecolor=\"").concat(this.props.borderColor, "\"\n                     fillcolor=\"").concat(this.props.backgroundColor, "\">\n          <w:anchorlock />\n          <center style=\"").concat(vmlCenterStyles, "\">\n            ").concat(this.props.text, "\n          !</center>\n        </v:roundrect>\n      <![endif]-->\n    ");
-      var htmlButton = "\n      <a\n        href=\"".concat(this.props.href, "\"\n        style=\"").concat(htmlLinkStyles, "\">\n        ").concat(this.props.text, "\n      </a>\n    ");
-      return React.createElement("div", null, React.createElement("div", {
-        dangerouslySetInnerHTML: {
-          __html: vmlButton
-        }
-      }), React.createElement("div", {
-        dangerouslySetInnerHTML: {
-          __html: htmlButton
-        }
-      }));
-    }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      if (this.linkElement) {
-        this.linkElement.style['mso-hide'] = 'all';
-        this.linkElement.style['font-size'] = '15px';
-        this.linkElement.style.fontSize = '16px';
-        this.linkElement.style.msoHide = 'all';
-      }
     }
   }]);
 
