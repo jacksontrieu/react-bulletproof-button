@@ -11,7 +11,7 @@ export default class BulletproofButton extends Component {
     });
 
     const vmlCenterStyles = hashToStyles({
-      'color': '#ffffff',
+      'color': this.props.fontColor,
       'font-family': this.props.fontFamily,
       'font-size': toPx(this.props.fontSize),
       'font-weight': this.props.fontWeight
@@ -51,7 +51,7 @@ export default class BulletproofButton extends Component {
           <w:anchorlock />
           <center style="${vmlCenterStyles}">
             ${this.props.text}
-          !</center>
+          </center>
         </v:roundrect>
       <![endif]-->
     `;
@@ -69,16 +69,7 @@ export default class BulletproofButton extends Component {
         <div dangerouslySetInnerHTML={{__html: vmlButton}} />
         <div dangerouslySetInnerHTML={{__html: htmlButton}} />
       </div>
-    )
-  }
-
-  componentDidMount() {
-    if (this.linkElement) {
-      this.linkElement.style['mso-hide'] = 'all';
-      this.linkElement.style['font-size'] = '15px';
-      this.linkElement.style.fontSize = '16px';
-      this.linkElement.style.msoHide = 'all';
-    }
+    );
   }
 
   calculateVmlArcSize = () => {

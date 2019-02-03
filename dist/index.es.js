@@ -1,136 +1,154 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-var hashToStyles = function hashToStyles(styleHash) {
-  var result = '';
-
-  var keys = Object.keys(styleHash);
-
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
-
-  try {
-    for (var _iterator = keys[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var key = _step.value;
-
-      if (result) {
-        result += '; ';
-      }
-
-      result += key + ': ' + styleHash[key];
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator.return) {
-        _iterator.return();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
-    }
-  }
-
-  return result;
-};
-
-var toPx = function toPx(value) {
-  if (!value) {
-    return '0';
-  }
-
-  return value + 'px';
-};
-
-var classCallCheck = function (instance, Constructor) {
+function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
-};
+}
 
-var createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
   }
 
-  return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-}();
+  return obj;
+}
 
-var inherits = function (subClass, superClass) {
+function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+    throw new TypeError("Super expression must either be null or a function");
   }
 
   subClass.prototype = Object.create(superClass && superClass.prototype, {
     constructor: {
       value: subClass,
-      enumerable: false,
       writable: true,
       configurable: true
     }
   });
-  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-};
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
 
-var possibleConstructorReturn = function (self, call) {
-  if (!self) {
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
 
-  return call && (typeof call === "object" || typeof call === "function") ? call : self;
+  return self;
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (typeof call === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return _assertThisInitialized(self);
+}
+
+var hashToStyles = function hashToStyles(styleHash) {
+  var result = '';
+  var keys = Object.keys(styleHash);
+
+  for (var _i = 0; _i < keys.length; _i++) {
+    var key = keys[_i];
+
+    if (result) {
+      result += '; ';
+    }
+
+    result += key + ': ' + styleHash[key];
+  }
+
+  return result;
+};
+var toPx = function toPx(value) {
+  if (!value) {
+    return '0';
+  }
+
+  return "".concat(value, "px");
 };
 
-var BulletproofButton = function (_Component) {
-  inherits(BulletproofButton, _Component);
+var BulletproofButton =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(BulletproofButton, _Component);
 
   function BulletproofButton() {
-    var _ref;
+    var _getPrototypeOf2;
 
-    var _temp, _this, _ret;
+    var _this;
 
-    classCallCheck(this, BulletproofButton);
+    _classCallCheck(this, BulletproofButton);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = BulletproofButton.__proto__ || Object.getPrototypeOf(BulletproofButton)).call.apply(_ref, [this].concat(args))), _this), _this.calculateVmlArcSize = function () {
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(BulletproofButton)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "calculateVmlArcSize", function () {
       return Math.round(_this.props.borderRadius / _this.props.width * 100).toString() + '%';
-    }, _temp), possibleConstructorReturn(_this, _ret);
+    });
+
+    return _this;
   }
 
-  createClass(BulletproofButton, [{
-    key: 'render',
+  _createClass(BulletproofButton, [{
+    key: "render",
     value: function render() {
       var vmlRectStyles = hashToStyles({
         'height': toPx(this.props.height),
         'v-text-anchor': 'middle',
         'width': toPx(this.props.width)
       });
-
       var vmlCenterStyles = hashToStyles({
         'color': '#ffffff',
         'font-family': this.props.fontFamily,
         'font-size': toPx(this.props.fontSize),
         'font-weight': this.props.fontWeight
       });
-
       var vmlArcSize = this.calculateVmlArcSize();
-
       var htmlLinkStyles = hashToStyles({
         'background-color': this.props.backgroundColor,
         'border-color': this.props.borderColor,
@@ -150,20 +168,20 @@ var BulletproofButton = function (_Component) {
         'width': toPx(this.props.width),
         '-webkit-text-size-adjust': 'none'
       });
-
-      var vmlButton = '\n      <!--[if mso]>\n        <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml"\n                     xmlns:w="urn:schemas-microsoft-com:office:word"\n                     href="' + this.props.href + '"\n                     style="' + vmlRectStyles + '"\n                     arcsize="' + vmlArcSize + '"\n                     strokecolor="' + this.props.borderColor + '"\n                     fillcolor="' + this.props.backgroundColor + '">\n          <w:anchorlock />\n          <center style="' + vmlCenterStyles + '">\n            ' + this.props.text + '\n          !</center>\n        </v:roundrect>\n      <![endif]-->\n    ';
-
-      var htmlButton = '\n      <a\n        href="' + this.props.href + '"\n        style="' + htmlLinkStyles + '">\n        ' + this.props.text + '\n      </a>\n    ';
-
-      return React.createElement(
-        'div',
-        null,
-        React.createElement('div', { dangerouslySetInnerHTML: { __html: vmlButton } }),
-        React.createElement('div', { dangerouslySetInnerHTML: { __html: htmlButton } })
-      );
+      var vmlButton = "\n      <!--[if mso]>\n        <v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\"\n                     xmlns:w=\"urn:schemas-microsoft-com:office:word\"\n                     href=\"".concat(this.props.href, "\"\n                     style=\"").concat(vmlRectStyles, "\"\n                     arcsize=\"").concat(vmlArcSize, "\"\n                     strokecolor=\"").concat(this.props.borderColor, "\"\n                     fillcolor=\"").concat(this.props.backgroundColor, "\">\n          <w:anchorlock />\n          <center style=\"").concat(vmlCenterStyles, "\">\n            ").concat(this.props.text, "\n          !</center>\n        </v:roundrect>\n      <![endif]-->\n    ");
+      var htmlButton = "\n      <a\n        href=\"".concat(this.props.href, "\"\n        style=\"").concat(htmlLinkStyles, "\">\n        ").concat(this.props.text, "\n      </a>\n    ");
+      return React.createElement("div", null, React.createElement("div", {
+        dangerouslySetInnerHTML: {
+          __html: vmlButton
+        }
+      }), React.createElement("div", {
+        dangerouslySetInnerHTML: {
+          __html: htmlButton
+        }
+      }));
     }
   }, {
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
       if (this.linkElement) {
         this.linkElement.style['mso-hide'] = 'all';
@@ -173,10 +191,9 @@ var BulletproofButton = function (_Component) {
       }
     }
   }]);
+
   return BulletproofButton;
 }(Component);
-
-
 BulletproofButton.defaultProps = {
   backgroundColor: '#556270',
   borderColor: '#1e3650',
@@ -190,7 +207,6 @@ BulletproofButton.defaultProps = {
   height: 40,
   width: 200
 };
-
 BulletproofButton.propTypes = {
   backgroundColor: PropTypes.string,
   borderColor: PropTypes.string,
