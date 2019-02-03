@@ -4,22 +4,74 @@ import { hashToStyles, toPx } from './util';
 
 export default class BulletproofButton extends Component {
   render() {
-    const vmlRectStyles = hashToStyles({
+    const vmlButton = this.renderVmlButton();
+    const htmlButton = this.renderHtmlButton();
+
+    return (
+      <div>
+        <div dangerouslySetInnerHTML={{__html: vmlButton}} />
+        <div dangerouslySetInnerHTML={{__html: htmlButton}} />
+      </div>
+    );
+  }
+
+  renderVmlButton() {
+    const vmlRectStyles = this.calculateVmlRectStyles();
+    const vmlCenterStyles = this.calculateVmlCenterStyles();
+    const vmlArcSize = this.calculateVmlArcSize();
+
+    return `
+      <!--[if mso]>
+        <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml"
+                     xmlns:w="urn:schemas-microsoft-com:office:word"
+                     href="${this.props.href}"
+                     style="${vmlRectStyles}"
+                     arcsize="${vmlArcSize}"
+                     strokecolor="${this.props.borderColor}"
+                     fillcolor="${this.props.backgroundColor}">
+          <w:anchorlock />
+          <center style="${vmlCenterStyles}">
+            ${this.props.text}
+          </center>
+        </v:roundrect>
+      <![endif]-->
+    `;
+  }
+
+  calculateVmlRectStyles() {
+    return hashToStyles({
       'height': toPx(this.props.height),
       'v-text-anchor': 'middle',
       'width': toPx(this.props.width)
     });
+  }
 
-    const vmlCenterStyles = hashToStyles({
+  calculateVmlCenterStyles() {
+    return hashToStyles({
       'color': this.props.fontColor,
       'font-family': this.props.fontFamily,
       'font-size': toPx(this.props.fontSize),
       'font-weight': this.props.fontWeight
     });
+  }
 
-    const vmlArcSize = this.calculateVmlArcSize();
+  calculateVmlArcSize = () => {
+    return Math.round((this.props.borderRadius / this.props.width) * 100).toString() + '%';
+  }
 
-    const htmlLinkStyles = hashToStyles({
+  renderHtmlButton() {
+    const htmlLinkStyles = this.calculateHtmlLinkStyles();
+    return `
+      <a
+        href="${this.props.href}"
+        style="${htmlLinkStyles}">
+        ${this.props.text}
+      </a>
+    `;
+  }
+
+  calculateHtmlLinkStyles() {
+    return hashToStyles({
       'background-color': this.props.backgroundColor,
       'border-color': this.props.borderColor,
       'border-style': this.props.borderStyle,
@@ -38,42 +90,6 @@ export default class BulletproofButton extends Component {
       'width': toPx(this.props.width),
       '-webkit-text-size-adjust': 'none'
     });
-
-    const vmlButton = `
-      <!--[if mso]>
-        <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml"
-                     xmlns:w="urn:schemas-microsoft-com:office:word"
-                     href="${this.props.href}"
-                     style="${vmlRectStyles}"
-                     arcsize="${vmlArcSize}"
-                     strokecolor="${this.props.borderColor}"
-                     fillcolor="${this.props.backgroundColor}">
-          <w:anchorlock />
-          <center style="${vmlCenterStyles}">
-            ${this.props.text}
-          </center>
-        </v:roundrect>
-      <![endif]-->
-    `;
-
-    const htmlButton = `
-      <a
-        href="${this.props.href}"
-        style="${htmlLinkStyles}">
-        ${this.props.text}
-      </a>
-    `;
-
-    return (
-      <div>
-        <div dangerouslySetInnerHTML={{__html: vmlButton}} />
-        <div dangerouslySetInnerHTML={{__html: htmlButton}} />
-      </div>
-    );
-  }
-
-  calculateVmlArcSize = () => {
-    return Math.round((this.props.borderRadius / this.props.width) * 100).toString() + '%';
   }
 }
 
