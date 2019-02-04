@@ -136,7 +136,7 @@ class App extends React.Component {
       <td>A valid [CSS font-weight value](https://www.w3schools.com/cssref/pr_font_weight.asp)</td>
     </tr>
     <tr>
-      <td>Height</td>
+      <td>height</td>
       <td>Number</td>
       <td>40</td>
       <td></td>
@@ -157,7 +157,7 @@ class App extends React.Component {
       <td>Button text</td>
     </tr>
     <tr>
-      <td>Width</td>
+      <td>width</td>
       <td>Number</td>
       <td>200</td>
       <td></td>
