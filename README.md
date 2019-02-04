@@ -1,7 +1,23 @@
 # react-bulletproof-button
 React component that allows you design and create goregous email buttons that are compatible with modern email clients & Outlook 2007+. HTML output is based on [Campaign Monitor's "Bulletproof email buttons" concept](https://buttons.cm/).
 
-# Why Do I Need Bulletproof Buttons?
+## Table of contents
+
+- [Why Do I Need Bulletproof Buttons?](#why-do-i-need-bulletproof-buttons)
+- [Screenshots](#screenshots)
+  - [Default Button style](#default-button-style)
+  - [Button with updated colors and border radius](#button-with-updated-colors-and-border-radius)
+- [Install](#install)
+- [Usage](#usage)
+- [API](#api)
+  - [Props](#props)
+- [Development](#development)
+- [Test](#test)
+- [Coverage](#coverage)
+- [License](#license)
+
+
+## Why Do I Need Bulletproof Buttons?
 
 CSS support for HTML emails differs wildly between email clients, making it difficult to create HTML that will render consistently across a wide range of email clients.
 
@@ -16,9 +32,13 @@ Older Outlook clients are supported by the use of VML and conditional rendering 
 [npm-image]: https://img.shields.io/npm/v/react-bulletproof-button.svg?style=flat-square
 [npm-url]: http://npmjs.org/package/react-bulletproof-button
 
-## Screenshot
+## Screenshots
+
+### Default Button style
 
 ![react-bulletproof-button screenshot](/screenshots/react-bulletproof-button.png?raw=true)
+
+### Button with updated colors and border radius
 
 ![react-bulletproof-button screenshot 2](/screenshots/react-bulletproof-button-2.png?raw=true)
 
